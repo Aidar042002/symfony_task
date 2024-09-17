@@ -5,9 +5,8 @@
 - [Папка проекта фронтенда - `frontend`](./frontend)
 
 ### Запсук проекта
-```bash```
-docker-compose up --build
+```docker-compose up --build```
 
 ### Пути для контроллеров:
-BookController (управление CRUD-операциями для книг)
-AuthorController (управление CRUD-операциями для авторов)
+- BookController (управление CRUD-операциями для книг)
+- AuthorController (управление CRUD-операциями для авторов)
