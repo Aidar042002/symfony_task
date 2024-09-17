@@ -8,5 +8,5 @@
 ```docker-compose up --build```
 
 ### Пути для контроллеров:
-- [`BookController` (управление CRUD-операциями для книг)](./book_management/src/Controller/BookController)
-- [`AuthorController` (управление CRUD-операциями для авторов)](./book_management/src/Controller/AuthorController)
+- [`BookController` (управление CRUD-операциями для книг)](./book_management/src/Controller/BookController.php)
+- [`AuthorController` (управление CRUD-операциями для авторов)](./book_management/src/Controller/AuthorController.php)
