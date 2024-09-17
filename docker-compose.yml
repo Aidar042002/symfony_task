@@ -1,0 +1,61 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+    container_name: php
+    volumes:
+      - ./book_management:/var/www/book_management
+    working_dir: /var/www/book_management
+    environment:
+      - SYMFONY_ENV=dev
+    depends_on:
+      - db
+    networks:
+      - symfony_network
+    command: >
+      sh -c "php bin/console doctrine:migrations:migrate --no-interaction &&
+             php-fpm"
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./book_management:/var/www/symfony
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80"
+    networks:
+      - symfony_network
+    depends_on:
+      - php
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      #docker inner password
+      MYSQL_ROOT_PASSWORD: psw
+      MYSQL_DATABASE: book_management
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    networks:
+      - symfony_network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm start
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - symfony_network    
+
+networks:
+  symfony_network:
+    driver: bridge
