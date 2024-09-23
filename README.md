@@ -4,7 +4,7 @@
 - [Папка проекта Symfony - `book_management`](./book_management)
 - [Папка проекта фронтенда - `frontend`](./frontend)
 
-### Запсук проекта
+### Запуск проекта
 ```docker-compose up --build```
 
 ### Пути для контроллеров:
